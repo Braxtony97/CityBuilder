@@ -1,4 +1,5 @@
 using Domain.Events;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using Infrastructure.Loaders;
 using MessagePipe;
@@ -20,6 +21,9 @@ namespace Infrastructure.Bootstrap
             var options = builder.RegisterMessagePipe();
             builder.RegisterMessageBroker<BuildingPlacedEvent>(options);
             builder.RegisterMessageBroker<BuildingRemovedEvent>(options); 
+            
+            builder.RegisterInstance(BuildingConfigFactory.Create())
+                .As<BuildingConfig>();
         }
 
         protected void Start()
