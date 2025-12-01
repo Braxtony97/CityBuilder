@@ -1,3 +1,4 @@
+using MessagePipe;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -13,6 +14,10 @@ public class ProjectLifetimeScope : LifetimeScope
         builder.RegisterInstance(_bootstrapper).As<IGameBootstrapper>();
         builder.Register<SceneLoader>(resolver => 
             new SceneLoader(resolver.Resolve<ICoroutineRunner>()), Lifetime.Singleton);
+        
+        var options = builder.RegisterMessagePipe();
+        builder.RegisterMessageBroker<BuildingPlacedEvent>(options);
+        builder.RegisterMessageBroker<BuildingRemovedEvent>(options); 
     }
 
     protected void Start()
