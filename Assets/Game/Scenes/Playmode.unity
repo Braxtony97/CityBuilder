@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 108421846}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 4.4, z: -3.5}
+  m_LocalPosition: {x: 0, y: 5.51, z: -4.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -289,7 +289,6 @@ MonoBehaviour:
     TypeName: Infrastructure.Bootstrap.ProjectLifetimeScope
   autoRun: 1
   autoInjectGameObjects: []
-  _gridView: {fileID: 1778575891}
 --- !u!4 &905674160
 Transform:
   m_ObjectHideFlags: 0
@@ -466,6 +465,9 @@ MonoBehaviour:
   _spacing: 1.1
   _gridWidth: 8
   _gridHeight: 8
+  _housePrefab: {fileID: 7454526284289202406, guid: a878e980e5d36404eacf47843b13c305, type: 3}
+  _farmPrefab: {fileID: 3142727852414744191, guid: a71b7113460831e499b95f29cc29cd9d, type: 3}
+  _towerPrefab: {fileID: 7979423413430621337, guid: b62f256fa105a2342b84610e7af0eb40, type: 3}
 --- !u!4 &1778575892
 Transform:
   m_ObjectHideFlags: 0
@@ -507,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 2073900413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.207, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

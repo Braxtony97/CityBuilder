@@ -24,10 +24,12 @@ namespace ApplicationLayer.UseCases
         public bool TryPlaceBuilding(BuildingType type, int x, int y)
         {
             var cell = _grid.GetCell(x, y);
-            if (cell.IsOccupied) return false;
+            if (cell.IsOccupied) 
+                return false;
 
             var data = _buildingConfig.Get(type);
-            if (!_economy.CanSpend(data.BaseCost)) return false;
+            if (!_economy.CanSpend(data.BaseCost)) 
+                return false;
 
             _economy.Spend(data.BaseCost);
             cell.IsOccupied = true;

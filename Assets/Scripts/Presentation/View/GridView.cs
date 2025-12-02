@@ -1,4 +1,5 @@
-﻿using ApplicationLayer.Services;
+﻿using System.Collections.Generic;
+using ApplicationLayer.Services;
 using ApplicationLayer.UseCases;
 using Domain.Models;
 using UnityEngine;
@@ -15,19 +16,36 @@ namespace Presentation.View
         [SerializeField] private float _spacing = 1.1f;
         [SerializeField] private int _gridWidth = 8;
         [SerializeField] private int _gridHeight= 8;
+        
+        [SerializeField] private GameObject _housePrefab;
+        [SerializeField] private GameObject _farmPrefab;
+        [SerializeField] private GameObject _towerPrefab;
+        
+        private Dictionary<BuildingType, GameObject> _buildingPrefabs;
 
         private GridService _gridService;
         private GameObject[,] _cellsVisual;
         private PlaceBuildingUseCase _placeBuilding;
+        private EconomyService _economy;
 
-        private void Awake() => 
+        private void Awake()
+        {
             _cellsVisual = new GameObject[32, 32];
+            
+            _buildingPrefabs = new Dictionary<BuildingType, GameObject>
+            {
+                { BuildingType.House, _housePrefab },
+                { BuildingType.Farm, _farmPrefab },
+                { BuildingType.Tower, _towerPrefab }
+            };
+        }
 
         [Inject]
-        public void Construct(GridService gridService, PlaceBuildingUseCase placeBuilding)
+        public void Construct(GridService gridService, PlaceBuildingUseCase placeBuilding, EconomyService economy)
         {
             _gridService = gridService;
             _placeBuilding =  placeBuilding;
+            _economy = economy;
         }
 
         private void Start() => 
@@ -69,17 +87,29 @@ namespace Presentation.View
                 x: x,
                 y: y
             );
+            // TODO заглушка, необходимо написать систему для выбора нужного здания
 
             if (success)
             {
-                Debug.Log($"Построено здание на ({x},{y})");
-                
-                _cellsVisual[x, y].GetComponent<Renderer>().material.color = Color.yellow;
+                Build(BuildingType.House, _cellsVisual[x, y]);
+                Debug.Log($"Gold lef: {_economy.Gold}"); // temp
             }
             else
             {
                 Debug.Log("Нельзя построить здание");
             }
+        }
+        
+        private void Build(BuildingType type, GameObject cell)
+        {
+            var prefab = _buildingPrefabs[type];
+            
+            var cellRenderer = cell.GetComponent<Renderer>();
+            float cellHeight = cellRenderer.bounds.size.y;
+            
+            Vector3 spawnPos = cell.transform.position + new Vector3(0, cellHeight / 2f, 0);
+            
+            Instantiate(prefab, spawnPos, Quaternion.identity, transform);
         }
 
         private void CreateGrid()
