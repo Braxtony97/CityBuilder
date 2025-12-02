@@ -1,5 +1,6 @@
 ﻿using ApplicationLayer.Services;
 using Domain.Models;
+using VContainer;
 
 namespace ApplicationLayer.UseCases
 {
@@ -9,6 +10,7 @@ namespace ApplicationLayer.UseCases
         private readonly GridService _grid;
         private readonly EconomyService _economy;
 
+        [Inject]
         public PlaceBuildingUseCase(
             BuildingConfig buildingConfig,
             GridService grid,

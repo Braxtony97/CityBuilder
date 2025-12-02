@@ -256,6 +256,55 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &905674158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905674160}
+  - component: {fileID: 905674159}
+  m_Layer: 0
+  m_Name: GameplaySceneScope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &905674159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905674158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e66f49f25941c7b158d151edf61c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Infrastructure::Infrastructure.Bootstrap.GameplaySceneScope
+  parentReference:
+    TypeName: Infrastructure.Bootstrap.ProjectLifetimeScope
+  autoRun: 1
+  autoInjectGameObjects: []
+  _gridView: {fileID: 1778575891}
+--- !u!4 &905674160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905674158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.26907, y: 1.99125, z: 1.84714}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1693266261
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,3 +520,4 @@ SceneRoots:
   - {fileID: 108421849}
   - {fileID: 1693266263}
   - {fileID: 1778575892}
+  - {fileID: 905674160}

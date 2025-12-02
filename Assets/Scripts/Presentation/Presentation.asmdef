@@ -3,7 +3,9 @@
     "rootNamespace": "",
     "references": [
         "VContainer",
-        "Application"
+        "Application",
+        "Domain",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

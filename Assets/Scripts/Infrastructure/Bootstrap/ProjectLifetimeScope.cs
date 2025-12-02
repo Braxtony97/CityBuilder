@@ -13,6 +13,12 @@ namespace Infrastructure.Bootstrap
     public class ProjectLifetimeScope : LifetimeScope
     {
         [SerializeField] private GameBootstrapper _bootstrapper;
+        
+        protected override void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+            base.Awake();
+        }
     
         protected override void Configure(IContainerBuilder builder)
         {
@@ -24,8 +30,11 @@ namespace Infrastructure.Bootstrap
             builder.RegisterMessageBroker<BuildingPlacedEvent>(options);
             builder.RegisterMessageBroker<BuildingRemovedEvent>(options); 
             
-            builder.Register<GridService>(Lifetime.Singleton); 
-            builder.Register<EconomyService>(Lifetime.Singleton);
+            builder.Register<GridService>(Lifetime.Singleton)
+                .WithParameter("width", 32)
+                .WithParameter("height", 32);
+            
+            builder.Register<EconomyService>(Lifetime.Singleton).WithParameter("startingGold", 1000);
             
             builder.RegisterInstance(_bootstrapper).As<IGameBootstrapper>();
         }
