@@ -11,8 +11,10 @@ namespace Infrastructure.Bootstrap
         private SceneLoader _sceneLoader;
 
         [Inject]
-        public void Construct(SceneLoader sceneLoader) => 
+        public void Construct(SceneLoader sceneLoader)
+        {
             _sceneLoader = sceneLoader;
+        }
 
         private async void Start()
         {

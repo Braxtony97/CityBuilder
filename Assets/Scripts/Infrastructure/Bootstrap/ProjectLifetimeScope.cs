@@ -1,3 +1,4 @@
+using ApplicationLayer.Services;
 using Domain.Events;
 using Domain.Models;
 using Infrastructure.Interfaces;
@@ -15,15 +16,18 @@ namespace Infrastructure.Bootstrap
     
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_bootstrapper).As<IGameBootstrapper>();
             builder.RegisterInstance(new SceneLoader()).As<SceneLoader>();
+            builder.RegisterInstance(BuildingConfigFactory.Create())
+                .As<BuildingConfig>();
         
             var options = builder.RegisterMessagePipe();
             builder.RegisterMessageBroker<BuildingPlacedEvent>(options);
             builder.RegisterMessageBroker<BuildingRemovedEvent>(options); 
             
-            builder.RegisterInstance(BuildingConfigFactory.Create())
-                .As<BuildingConfig>();
+            builder.Register<GridService>(Lifetime.Singleton); 
+            builder.Register<EconomyService>(Lifetime.Singleton);
+            
+            builder.RegisterInstance(_bootstrapper).As<IGameBootstrapper>();
         }
 
         protected void Start()

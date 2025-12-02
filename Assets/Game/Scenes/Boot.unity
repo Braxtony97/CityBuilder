@@ -153,7 +153,6 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _bootstrapper: {fileID: 2146291159}
-  _coroutineRunner: {fileID: 1479008549}
 --- !u!4 &1252278542
 Transform:
   m_ObjectHideFlags: 0
@@ -261,6 +260,6 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2146291158}
   - {fileID: 1252278542}
+  - {fileID: 2146291158}
   - {fileID: 1479008550}
